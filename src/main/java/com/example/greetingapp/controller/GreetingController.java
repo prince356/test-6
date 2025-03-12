@@ -38,4 +38,13 @@ public class GreetingController {
     public Optional<Greeting> updateGreeting(@PathVariable Long id, @RequestParam String newMessage) {
         return greetingService.updateGreeting(id, newMessage);
     }
+    @DeleteMapping("/delete/{id}")
+    public String deleteGreeting(@PathVariable Long id) {
+        boolean isDeleted = greetingService.deleteGreeting(id);
+        if (isDeleted) {
+            return "Greeting with ID " + id + " deleted successfully.";
+        } else {
+            return "Greeting with ID " + id + " not found.";
+        }
+    }
 }
