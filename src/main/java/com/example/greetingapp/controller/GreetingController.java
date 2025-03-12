@@ -14,7 +14,8 @@ public class GreetingController {
     }
 
     @GetMapping("/hello")
-    public String sayHello() {
-        return greetingService.getGreetingMessage();
+    public String sayHello(@RequestParam(required = false) String firstName,
+                           @RequestParam(required = false) String lastName) {
+        return greetingService.getPersonalizedGreeting(firstName, lastName);
     }
 }
